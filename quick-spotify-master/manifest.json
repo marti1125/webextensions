@@ -1,0 +1,61 @@
+{
+  "manifest_version": 2,
+  "name": "Quickify: Spotify Web Player Shortcuts",
+  "version": "1.1",
+
+  "description": "Provides a quick way of interacting with the Spotify Web Player without losing context of your current webpage.",
+  "icons": {
+    "19": "icons/quickify_19.png",
+    "38": "icons/quickify_38.png",
+    "48": "icons/quickify_48.png",
+    "128": "icons/quickify_128.png"
+  },
+
+  "browser_action": {
+    "default_icon": {
+      "19": "icons/quickify_19.png",
+      "38": "icons/quickify_38.png"
+    },
+    "default_title": "Quickify",
+    "default_popup": "popup.html"
+  },
+
+  "author": "Diego Accame",
+  "background": {
+    "persistent": false,
+    "scripts": ["messages.js", "background.js"]
+  },
+  "commands": {
+    "play-pause": {
+      "suggested_key": "MediaPlayPause",
+      "description": "Play/Pause current song"
+    },
+    "next": {
+      "description": "Next track",
+      "suggested_key": "MediaNextTrack"
+    },
+    "previous": {
+      "description": "Previous track",
+      "suggested_key": "MediaPrevTrack"
+    },
+    "shuffle": {
+      "description": "Shuffle"
+    },
+    "repeat": {
+      "description": "Repeat"
+    },
+    "track-add": {
+      "description": "Save/Unsave track"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://play.spotify.com/*", "https://player.spotify.com/*"],
+      "js": ["messages.js", "quickify_content.js"]
+    }
+  ],
+  "permissions": [
+    "tabs",
+    "https://play.spotify.com/"
+  ]
+}
